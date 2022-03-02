@@ -6,24 +6,13 @@ import { Trans } from '@lingui/macro';
 import { messages } from './locales/en/messages'
 
 import Header from "./components/Header";
-// import SignupForm from "./components/SignupForm";
 import { defaultLocale, dynamicActivate } from "./i18n";
-
-// import "..//main.scss";
 
 
 // const theme = extendTheme({
 //   initialColorMode: 'light',
 //   useSystemColorMode: false,
 // });
-
-// Included starter code for backend integration:
-// import { refugee_matcher } from "../../declarations/refugee_matcher";
-// async function doGreet() {
-//   const greeting = await refugee_matcher.greet(name);
-//   setMessage(greeting);
-// }
-
 
 i18n.load(defaultLocale, messages)
 i18n.activate(defaultLocale)
