@@ -6,7 +6,7 @@ import { Trans } from '@lingui/macro';
 import { messages } from './locales/en/messages'
 
 import Header from "./components/Header";
-import SignupForm from "./components/SignupForm";
+// import SignupForm from "./components/SignupForm";
 import { defaultLocale, dynamicActivate } from "./i18n";
 
 // import "..//main.scss";
