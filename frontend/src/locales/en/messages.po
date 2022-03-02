@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language: \n"
+"Language-Team: \n"
+"Content-Type: \n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#: src/App.tsx:78
+msgid "About"
+msgstr "About"
+
+#: src/components/Header.tsx:84
+msgid "About Us"
+msgstr "About Us"
+
+#: src/components/SignupForm.tsx:21
+msgid "Have an account already?"
+msgstr "Have an account already?"
+
+#: src/App.tsx:68
+msgid "I can offer shelter"
+msgstr "I can offer shelter"
+
+#: src/App.tsx:61
+msgid "I need shelter"
+msgstr "I need shelter"
+
+#: src/components/Header.tsx:87
+#: src/components/SignupForm.tsx:23
+msgid "Log In"
+msgstr "Log In"
+
+#: src/components/SignupForm.tsx:17
+msgid "Sign Up"
+msgstr "Sign Up"
+
+#: src/components/Header.tsx:90
+msgid "Sign up"
+msgstr "Sign up"
