@@ -6,8 +6,11 @@ import { Trans } from '@lingui/macro';
 import { messages } from './locales/en/messages'
 
 import Header from "./components/Header";
-import { defaultLocale, dynamicActivate } from "./i18n";
+import LandingPage from "./components/LandingPage";
+import SignupForm from "./components/SignupForm";
 
+import { defaultLocale, dynamicActivate } from "./i18n";
+import { SignupFlows } from "./types";
 
 // const theme = extendTheme({
 //   initialColorMode: 'light',
@@ -26,6 +29,8 @@ const theme = extendTheme({
 
 export default function App() {
   const [lang, setLang] = React.useState(defaultLocale);
+  const [signupFlow, setSignupFlow] = React.useState<SignupFlows>(null); // eventually move to React Router
+
   useEffect(() => {
     dynamicActivate(lang);
   }, [lang])
@@ -36,31 +41,12 @@ export default function App() {
       <ChakraProvider theme={theme}>
         <Flex direction='column' height='100%' bg='gray.50'>
           <Box flex='1 0 auto'>
-            <Header onLangChange={setLang} />
-            <Center>
-              <VStack mt='100'>
-                <Heading fontSize='5xl'>Site of Refuge</Heading>
-                <Text fontSize='lg' maxWidth='440px' textAlign='center'>
-                  Dedicated to connecting refugees with people willing to open their doors.
-                </Text>
-                <SimpleGrid pt='32px' columns={{sm: 1, md: 2}} spacing='16px'>
-                  <Box>
-                    <Center>
-                      <Button size="lg" bg='blue.700' color='white' _hover={{bg: 'blue.900'}} width='310px'>
-                        <Trans>I need shelter</Trans>
-                      </Button>
-                    </Center>
-                  </Box>
-                  <Box>
-                    <Center>
-                      <Button size="lg" width='310px'>
-                        <Trans>I can offer shelter</Trans>
-                      </Button>
-                    </Center>
-                  </Box>
-                </SimpleGrid>
-              </VStack>
-            </Center>
+            <Header lang={lang} onLangChange={setLang} />
+            {
+              signupFlow === null ?
+                <LandingPage setSignupFlow={setSignupFlow}></LandingPage>
+                : <SignupForm exitSignup={() => setSignupFlow(null)} />
+            }
           </Box>
           <Center margin="80px" as='footer' flexShrink='0'>
             <Link padding='5px'>

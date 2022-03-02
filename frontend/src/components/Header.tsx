@@ -1,13 +1,12 @@
-import { ReactNode } from 'react';
 import {
   Box,
   Flex,
   HStack,
+  Image,
   Link,
   IconButton,
   Button,
   useDisclosure,
-  useColorModeValue,
   Stack,
   Heading,
   Divider,
@@ -17,33 +16,17 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { Trans } from '@lingui/macro';
 import { SupportedLocale, locales } from '../i18n';
 
-const Links: Array<string> = [];
-
-const NavLink = ({ children }: { children: ReactNode }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
-    }}
-    href={'#'}>
-    {children}
-  </Link>
-);
-
-export default function Header({ onLangChange }: {onLangChange: (v: SupportedLocale) => void}) {
+export default function Header({ lang, onLangChange }: {lang: SupportedLocale, onLangChange: (v: SupportedLocale) => void}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
       <Box>
         <Box mx='24px' my='8px'>
-          <Select placeholder='🌐' onChange={e => onLangChange(e.target.value as SupportedLocale)} size='sm' width='90px'>
+          <Select value={lang} onChange={e => onLangChange(e.target.value as SupportedLocale)} size='sm' width='90px'>
             {
               Object.keys(locales).map(l => 
-                <option key={l} value={l}>{l.toUpperCase()}</option>
+                <option key={l} value={l}>🌐 {l.toUpperCase()}</option>
               )
             }
           </Select>
@@ -58,16 +41,16 @@ export default function Header({ onLangChange }: {onLangChange: (v: SupportedLoc
               display={{ md: 'none' }}
               onClick={isOpen ? onClose : onOpen}
             />
-            <HStack spacing={8} alignItems={'center'}>
+            <HStack spacing={4} alignItems={'center'}>
+              <Image
+                borderRadius='full'
+                borderWidth='10px'
+                borderColor='blue.700'
+                boxSize='45px'
+                src='logo512.png'
+                alt='Site Logo'
+              />
               <Heading as='h1' size='lg' id='logo' color='#5B75B4' fontFamily='"Outfit", sans-serif'>Site of Refuge</Heading>
-              <HStack
-                as={'nav'}
-                spacing={4}
-                display={{ base: 'none', md: 'flex' }}>
-                {Links.map((link) => (
-                  <NavLink key={link}>{link}</NavLink>
-                ))}
-              </HStack>
             </HStack>
             <Flex alignItems={'center'}>
               <HStack
@@ -90,9 +73,7 @@ export default function Header({ onLangChange }: {onLangChange: (v: SupportedLoc
           {isOpen ? (
             <Box pb={4} display={{ md: 'none' }}>
               <Stack as={'nav'} spacing={4}>
-                {Links.map((link) => (
-                  <NavLink key={link}>{link}</NavLink>
-                ))}
+                {/* Nothing in the menu for now */}
               </Stack>
             </Box>
           ) : null}
