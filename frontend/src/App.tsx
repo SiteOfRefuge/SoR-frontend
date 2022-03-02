@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ChakraProvider, extendTheme, Center, Box, Button, Link, Text, SimpleGrid, Flex, Heading, VStack } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme, Center, Box, Link, Flex } from '@chakra-ui/react';
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { Trans } from '@lingui/macro';
@@ -58,4 +58,3 @@ export default function App() {
     </I18nProvider>
   );
 };
-
