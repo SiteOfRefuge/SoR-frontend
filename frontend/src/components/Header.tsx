@@ -5,7 +5,6 @@ import {
   Image,
   Link,
   IconButton,
-  Button,
   useDisclosure,
   Stack,
   Heading,
@@ -16,8 +15,7 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { Trans } from '@lingui/macro';
 import { SupportedLocale, locales } from '../i18n';
 import { useIsAuthenticated } from "@azure/msal-react";
-import { SignInButton } from "./SignInButton";
-import { SignOutButton } from "./SignOutButton";
+import { SignInSignOutButton } from "./SignInSignOutButton";
 
 export default function Header({ lang, onLangChange }: {lang: SupportedLocale, onLangChange: (v: SupportedLocale) => void}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -64,7 +62,7 @@ export default function Header({ lang, onLangChange }: {lang: SupportedLocale, o
                 <Link>
                   <Trans>About Us</Trans>
                 </Link>
-                { isAuthenticated ? <SignOutButton /> : <SignInButton /> }
+                <SignInSignOutButton />
               </HStack>
             </Flex>
           </Flex>

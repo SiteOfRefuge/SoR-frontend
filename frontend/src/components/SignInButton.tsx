@@ -4,9 +4,7 @@ import { loginRequest } from "../authConfig";
 import { Button } from '@chakra-ui/react';
 
 function handleLogin(instance:any) {
-    instance.loginRedirect(loginRequest).catch((e:any) => {
-        console.error(e);
-    });
+    instance.loginPopup(loginRequest);
 }
 
 /**
@@ -16,6 +14,6 @@ export const SignInButton = () => {
     const { instance } = useMsal();
 
     return (
-        <Button variant="secondary" className="ml-auto" onClick={() => handleLogin(instance)}>Sign in using Redirect</Button>
+        <Button variant="secondary" className="ml-auto" onClick={() => handleLogin(instance)}>Sign in</Button>
     );
 }
