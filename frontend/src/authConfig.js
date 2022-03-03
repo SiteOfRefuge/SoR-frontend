@@ -2,7 +2,7 @@ export const msalConfig = {
   auth: {
     clientId: "30222d8b-d3d1-4f62-9a2c-8161c2252e5b",
     authority: "https://siteofrefugeb2c.b2clogin.com/siteofrefugeb2c.onmicrosoft.com/B2C_1_sms_registry",
-    redirectUri: "http://localhost:3000",
+    redirectUri: "https://app-staging.siteofrefuge.com",
     knownAuthorities: ["siteofrefugeb2c.b2clogin.com"], // You must identify your tenant's domain as a known authority.
 
   },
