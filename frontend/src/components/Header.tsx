@@ -14,12 +14,10 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { Trans } from '@lingui/macro';
 import { SupportedLocale, locales } from '../i18n';
-import { useIsAuthenticated } from "@azure/msal-react";
 import { SignInSignOutButton } from "./SignInSignOutButton";
 
 export default function Header({ lang, onLangChange }: {lang: SupportedLocale, onLangChange: (v: SupportedLocale) => void}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const isAuthenticated = useIsAuthenticated();
 
   return (
     <>
