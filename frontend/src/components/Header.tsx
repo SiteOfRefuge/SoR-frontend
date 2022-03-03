@@ -5,7 +5,6 @@ import {
   Image,
   Link,
   IconButton,
-  Button,
   useDisclosure,
   Stack,
   Heading,
@@ -15,6 +14,7 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { Trans } from '@lingui/macro';
 import { SupportedLocale, locales } from '../i18n';
+import { SignInSignOutButton } from "./SignInSignOutButton";
 
 export default function Header({ lang, onLangChange }: {lang: SupportedLocale, onLangChange: (v: SupportedLocale) => void}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -25,7 +25,7 @@ export default function Header({ lang, onLangChange }: {lang: SupportedLocale, o
         <Box mx='24px' my='8px'>
           <Select value={lang} onChange={e => onLangChange(e.target.value as SupportedLocale)} size='sm' width='90px'>
             {
-              Object.keys(locales).map(l => 
+              Object.keys(locales).map(l =>
                 <option key={l} value={l}>🌐 {l.toUpperCase()}</option>
               )
             }
@@ -60,12 +60,7 @@ export default function Header({ lang, onLangChange }: {lang: SupportedLocale, o
                 <Link>
                   <Trans>About Us</Trans>
                 </Link>
-                <Button variant='outline' borderWidth='2' color='blue.700'>
-                  <Trans>Log In</Trans>
-                </Button>
-                <Button bg='blue.700' color='white' _hover={{bg: 'blue.900'}}>
-                  <Trans>Sign up</Trans>
-                </Button>
+                <SignInSignOutButton />
               </HStack>
             </Flex>
           </Flex>
