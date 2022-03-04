@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { Trans } from '@lingui/macro';
 import { SignupFlows } from '../types';
+import PrimaryButton from './PrimaryButton';
 
 
 export default function LandingPage({ setSignupFlow }: {setSignupFlow: (v: SignupFlows) => void}) {
@@ -22,12 +23,12 @@ export default function LandingPage({ setSignupFlow }: {setSignupFlow: (v: Signu
         <SimpleGrid pt='32px' columns={{sm: 1, md: 2}} spacing='16px'>
           <Box>
             <Center>
-              <Button
-                size="lg" bg='blue.700' color='white' _hover={{bg: 'blue.900'}} width='310px'
+              <PrimaryButton
+                size="lg" width='310px'
                 onClick={() => setSignupFlow('refugee')}
               >
                 <Trans>I need shelter</Trans>
-              </Button>
+              </PrimaryButton>
             </Center>
           </Box>
           <Box>

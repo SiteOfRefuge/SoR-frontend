@@ -39,13 +39,13 @@ export default function App() {
     <I18nProvider i18n={i18n}>
     {/* <IntlProvider locale={lang} messages={messages[lang]} defaultLocale={defaultLocale}> */}
       <ChakraProvider theme={theme}>
-        <Flex direction='column' height='100%' bg='gray.50'>
+        <Flex direction='column' minHeight='100%' bg='gray.50'>
           <Box flex='1 0 auto'>
             <Header lang={lang} onLangChange={setLang} />
             {
               signupFlow === null ?
                 <LandingPage setSignupFlow={setSignupFlow}></LandingPage>
-                : <SignupForm exitSignup={() => setSignupFlow(null)} />
+                : <SignupForm signupFlow={signupFlow} setSignupFlow={setSignupFlow} />
             }
           </Box>
           <Center margin="80px" as='footer' flexShrink='0'>
