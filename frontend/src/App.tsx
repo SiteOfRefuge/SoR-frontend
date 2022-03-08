@@ -1,21 +1,11 @@
 import React, { useEffect } from "react";
-import { ChakraProvider, extendTheme, Center, Box, Link, Flex } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import { Trans } from '@lingui/macro';
 import { messages } from './locales/en/messages'
 
-import Header from "./components/Header";
-import LandingPage from "./components/LandingPage";
-import SignupForm from "./components/SignupForm";
-
 import { defaultLocale, dynamicActivate } from "./i18n";
-import { SignupFlows } from "./types";
-
-// const theme = extendTheme({
-//   initialColorMode: 'light',
-//   useSystemColorMode: false,
-// });
+import Router from "./router";
 
 i18n.load(defaultLocale, messages)
 i18n.activate(defaultLocale)
@@ -29,7 +19,6 @@ const theme = extendTheme({
 
 export default function App() {
   const [lang, setLang] = React.useState(defaultLocale);
-  const [signupFlow, setSignupFlow] = React.useState<SignupFlows>(null); // eventually move to React Router
 
   useEffect(() => {
     dynamicActivate(lang);
@@ -37,23 +26,8 @@ export default function App() {
 
   return (
     <I18nProvider i18n={i18n}>
-    {/* <IntlProvider locale={lang} messages={messages[lang]} defaultLocale={defaultLocale}> */}
       <ChakraProvider theme={theme}>
-        <Flex direction='column' minHeight='100%' bg='gray.50'>
-          <Box flex='1 0 auto'>
-            <Header lang={lang} onLangChange={setLang} />
-            {
-              signupFlow === null ?
-                <LandingPage setSignupFlow={setSignupFlow}></LandingPage>
-                : <SignupForm signupFlow={signupFlow} setSignupFlow={setSignupFlow} />
-            }
-          </Box>
-          <Center margin="80px" as='footer' flexShrink='0'>
-            <Link padding='5px'>
-              <Trans>About</Trans>
-            </Link>
-          </Center>
-        </Flex>
+        <Router />
       </ChakraProvider>
     </I18nProvider>
   );

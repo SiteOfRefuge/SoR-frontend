@@ -8,11 +8,10 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { Trans } from '@lingui/macro';
-import { SignupFlows } from '../types';
-import PrimaryButton from './PrimaryButton';
+import PrimaryButton from '../components/PrimaryButton';
 
 
-export default function LandingPage({ setSignupFlow }: {setSignupFlow: (v: SignupFlows) => void}) {
+export default function LandingPage() {
   return (
     <Center>
       <VStack mt='100'>
@@ -25,7 +24,6 @@ export default function LandingPage({ setSignupFlow }: {setSignupFlow: (v: Signu
             <Center>
               <PrimaryButton
                 size="lg" width='310px'
-                onClick={() => setSignupFlow('refugee')}
               >
                 <Trans>I need shelter</Trans>
               </PrimaryButton>
@@ -33,7 +31,7 @@ export default function LandingPage({ setSignupFlow }: {setSignupFlow: (v: Signu
           </Box>
           <Box>
             <Center>
-              <Button size="lg" width='310px' onClick={() => setSignupFlow('host')}>
+              <Button size="lg" width='310px'>
                 <Trans>I can offer shelter</Trans>
               </Button>
             </Center>
