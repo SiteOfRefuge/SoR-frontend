@@ -19,57 +19,17 @@ import { Trans } from '@lingui/macro'
 import PrimaryButton from './PrimaryButton'
 import { useForm, useController } from 'react-hook-form';
 import { RefugeeSummary } from '../types';
-import { useMsal } from '@azure/msal-react';
-import { InteractionStatus, InteractionRequiredAuthError } from '@azure/msal-browser';
-import { loginRequest } from '../authConfig';
-
-
+import { APIS, useAuthorizedApi } from '../api';
 
 export default function RefugeeSignupForm({ onSignup } : { onSignup: () => void}) {
   const { register, control, handleSubmit } = useForm<RefugeeSummary>({
     defaultValues: {},
   });
-  const { instance, inProgress, accounts } = useMsal();
 
-  const doSubmit = (data: RefugeeSummary, accessToken: string) => {
-    const headers = new Headers();
-    const bearer = "Bearer " + accessToken;
-    headers.append("Authorization", bearer);
-
-    fetch('/v1/refugees', {
-      method: 'POST',
-      mode: 'cors',
-      headers,
-
-    })
-    console.log(data)
-  }
+  const addRefuge = useAuthorizedApi(APIS.ADD_REFUGEE)
 
   const onSubmit = handleSubmit(data => {
-    // TODO: refactor this into a re-usable hook, once we get it working.
-    if (inProgress === InteractionStatus.None) {
-      const accessTokenRequest = {
-        scopes: loginRequest.scopes,
-        account: accounts[0]
-      }
-      instance.acquireTokenSilent(accessTokenRequest).then((accessTokenResponse) => {
-        // Acquire token silent success
-        let accessToken = accessTokenResponse.accessToken;
-        doSubmit(data, accessToken);
-      }).catch((error) => {
-        if (error instanceof InteractionRequiredAuthError) {
-          instance.acquireTokenPopup(accessTokenRequest).then(function(accessTokenResponse) {
-            // Acquire token interactive success
-            let accessToken = accessTokenResponse.accessToken;
-            doSubmit(data, accessToken);
-          }).catch(function(error) {
-            // Acquire token interactive failure
-            console.log(error);
-          });
-        }
-        console.log(error);
-      });
-    }
+    addRefuge(data);
   });
 
   const restrictions = useController({
