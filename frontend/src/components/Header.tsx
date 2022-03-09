@@ -1,9 +1,9 @@
+import { useContext } from "react"
 import {
   Box,
   Flex,
   HStack,
   Image,
-  Link,
   IconButton,
   useDisclosure,
   Stack,
@@ -11,19 +11,22 @@ import {
   Divider,
   Select,
 } from '@chakra-ui/react';
+import { Link } from "react-router-dom"
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { Trans } from '@lingui/macro';
 import { SupportedLocale, locales } from '../i18n';
 import { SignInSignOutButton } from "./SignInSignOutButton";
+import { LangContext } from "../context/lang"
 
-export default function Header({ lang, onLangChange }: {lang: SupportedLocale, onLangChange: (v: SupportedLocale) => void}) {
+export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [lang, setVal] = useContext(LangContext);
 
   return (
     <>
       <Box>
         <Box mx='24px' my='8px'>
-          <Select value={lang} onChange={e => onLangChange(e.target.value as SupportedLocale)} size='sm' width='90px'>
+          <Select value={lang} onChange={e => setVal(e.target.value as SupportedLocale)} size='sm' width='90px'>
             {
               Object.keys(locales).map(l =>
                 <option key={l} value={l}>🌐 {l.toUpperCase()}</option>
@@ -57,7 +60,7 @@ export default function Header({ lang, onLangChange }: {lang: SupportedLocale, o
                 as={'nav'}
                 spacing={4}
                 display={{ base: 'none', md: 'flex' }}>
-                <Link>
+                <Link to="/about">
                   <Trans>About Us</Trans>
                 </Link>
                 <SignInSignOutButton />

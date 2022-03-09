@@ -17,7 +17,7 @@ export default function LandingPage() {
 
   return (
     <>
-      <Header lang="en" onLangChange={() => {}} />
+      <Header />
       <Center>
         <VStack mt='100'>
           <Heading fontSize='5xl'>Site of Refuge</Heading>
