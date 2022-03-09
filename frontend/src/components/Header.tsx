@@ -20,13 +20,13 @@ import { LangContext } from "../context/lang"
 
 export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [lang, setVal] = useContext(LangContext);
+  const [lang, setLang] = useContext(LangContext);
 
   return (
     <>
       <Box>
         <Box mx='24px' my='8px'>
-          <Select value={lang} onChange={e => setVal(e.target.value as SupportedLocale)} size='sm' width='90px'>
+          <Select value={lang} onChange={e => setLang(e.target.value as SupportedLocale)} size='sm' width='90px'>
             {
               Object.keys(locales).map(l =>
                 <option key={l} value={l}>🌐 {l.toUpperCase()}</option>

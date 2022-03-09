@@ -13,7 +13,7 @@ export default function Router() {
     return (
         <BrowserRouter>
             <Routes>
-                {/* Unprotexted routes */}
+                {/* Unprotected routes */}
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 {/* Routes that should be accessble only for unautentified users */}
