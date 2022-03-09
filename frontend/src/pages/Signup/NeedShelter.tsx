@@ -1,4 +1,4 @@
-import { Flex, Box, Center } from "@chakra-ui/react";
+import { Flex, Center } from "@chakra-ui/react";
 import Header from "../../components/Header";
 import RefugeeSignupForm from "../../components/RefugeeSignupForm";
 
