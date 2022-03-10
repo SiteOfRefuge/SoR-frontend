@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './styles/index.css';
+import "react-datepicker/dist/react-datepicker.css";
+import './styles/react-datepicker.css';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { PublicClientApplication } from "@azure/msal-browser";

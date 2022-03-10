@@ -11,6 +11,7 @@ import { Trans } from '@lingui/macro';
 import { useNavigate } from "react-router-dom";
 import Header from '../components/Header';
 import PrimaryButton from '../components/PrimaryButton';
+import { Routes } from '../enums/routes';
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ export default function LandingPage() {
                 <PrimaryButton 
                   size="lg" 
                   width='310px' 
-                  onClick={() => navigate('/signup/need-shelter')} 
+                  onClick={() => navigate(Routes.SIGNUP_TO_REQUEST_SHELTER)} 
                 >
                   <Trans>I need shelter</Trans>
                 </PrimaryButton>
@@ -41,7 +42,7 @@ export default function LandingPage() {
                 <Button 
                   size="lg" 
                   width='310px' 
-                  onClick={() => navigate('/signup/offer-shelter')}
+                  onClick={() => navigate(Routes.SIGNUP_TO_OFFER_SHELTER)}
                 >
                   <Trans>I can offer shelter</Trans>
                 </Button>

@@ -3,6 +3,13 @@ export type ApiDefinition = {
   method: 'GET' | 'POST',
 }
 
+type d = 1|2|3|4|5|6|7|8|9|0;
+type oneToNine = 1|2|3|4|5|6|7|8|9;
+type MM = `0${oneToNine}` | `1${0|1|2}`;
+type YYYY = `20${d}${d}`
+type DD = `${0}${oneToNine}` | `${1|2}${d}` | `3${0|1}`;
+type DateDD_MM_YY = `${DD}-${MM}-${YYYY}`;
+
 export type ContactMethods = 'Phone' | 'Email' | 'SMS';
 
 export type ContactMethod = {
@@ -41,8 +48,32 @@ export type RefugeeSummary = {
   possession_date: string;
 }
 
-export type RefugeeProfile = {
+export type Availability = {
+  id: string
+  date_available: DateDD_MM_YY
+  active: boolean
+  length_of_stay: string
+}
+
+export type HostSummary = {
+  id: string
+  region: string
+  allowed_people: number
+  restrictions: Restriction[]
+  message: string
+  shelter: string
+  languages: SpokenLanguages[]
+  availability: Availability
+}
+
+export type HostProfile = {
   id: string;
-  summary: RefugeeSummary;
+  summary: HostSummary;
   contact: Contact;
+}
+
+export type RefugeeProfile = {
+  id: string
+  summary: RefugeeSummary
+  contact: Contact
 }
