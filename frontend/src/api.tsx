@@ -4,6 +4,8 @@ import { InteractionStatus, InteractionRequiredAuthError } from '@azure/msal-bro
 import { msalConfig } from './authConfig';
 import { ApiDefinition } from './apiTypes';
 
+const domain = process.env.NODE_ENV === 'production' ?
+  'https://api-staging.siteofrefuge.com' : '';
 
 export const APIS: {[key: string]: ApiDefinition} = {
   ADD_REFUGEE: { url: '/v1/refugees', method: 'POST' },
@@ -19,7 +21,7 @@ function callApi(api: ApiDefinition, accessToken: string, bodyData?: any) {
   headers.append("Authorization", bearer);
   headers.append("Content-Type", "application/json")
 
-  fetch(api.url, {
+  fetch(domain + api.url, {
     method: api.method,
     mode: 'cors',
     headers,
