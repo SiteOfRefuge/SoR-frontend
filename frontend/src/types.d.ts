@@ -1,27 +1,13 @@
+import { RefugeeSummary } from "./apiTypes";
+
 export type SignupFlows = null | 'refugee' | 'host';
 
-export type Region = {
-  country: string;
-  code: string;
-  countryCode: string;
-  type: string;
-  name: string;
-}
-
-export type Restriction = 'Minors' | 'Adult men' | 'Adult women' | 'Dogs' | 'Cats' | 'Pets';
-export type SpokenLanguages = 'English' | 'Ukrainian' | 'Polish' | 'Russian' | 'Slovak' |
-  'Hungarian' | 'Romanian' | 'Other';
-
-export type RefugeeSummary = {
+export type RefugeeForm = {
   id: string;
-  firstName: string;
-  lastInitial: string;
+  summary: RefugeeSummary;
+  phone: string;
   email: string;
-  phoneNumber: string;
-  people: number;
-  region: string;
-  message: string;
-  restrictions: Restriction[];
-  languages: SpokenLanguages[];
-  possession_date: Date;
+  sms: string;
+  firstName: string;
+  lastName: string;
 }

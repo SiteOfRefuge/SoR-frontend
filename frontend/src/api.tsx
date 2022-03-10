@@ -2,11 +2,8 @@ import { useMsal } from '@azure/msal-react';
 import { InteractionStatus, InteractionRequiredAuthError } from '@azure/msal-browser';
 
 import { msalConfig } from './authConfig';
+import { ApiDefinition } from './apiTypes';
 
-export type ApiDefinition = {
-  url: string,
-  method: 'GET' | 'POST',
-}
 
 export const APIS: {[key: string]: ApiDefinition} = {
   ADD_REFUGEE: { url: '/v1/refugees', method: 'POST' },

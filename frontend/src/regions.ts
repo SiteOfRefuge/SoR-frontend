@@ -1,4 +1,4 @@
-import { Region } from "./types";
+import { Region } from "./apiTypes";
 
 // Regions, from https://github.com/olahol/iso-3166-2.js/blob/master/data.csv
 export const regions: Region[] = [
@@ -140,4 +140,13 @@ export const regions: Region[] = [
   {country: "Hungary", code: "HU-VM", name: "Veszprém", type: "City of county right", countryCode: "HU"},
   {country: "Hungary", code: "HU-ZA", name: "Zala",	type: "County", countryCode: "HU"},
   {country: "Hungary", code: "HU-ZE", name: "Zalaegerszeg", type: "City of county right", countryCode: "HU"},
-]
+];
+
+export const regionByCountry: ({[key: string]: Region[]}) = {};
+
+regions.forEach(r => {
+  if (regionByCountry[r.country] === undefined) {
+    regionByCountry[r.country] = [];
+  }
+  regionByCountry[r.country].push(r);
+})
