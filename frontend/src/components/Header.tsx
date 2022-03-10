@@ -50,7 +50,7 @@ export default function Header() {
                 borderWidth='10px'
                 borderColor='blue.700'
                 boxSize='45px'
-                src='logo512.png'
+                src='/logo512.png'
                 alt='Site Logo'
               />
               <Heading as='h1' size='lg' id='logo' color='#5B75B4' fontFamily='"Outfit", sans-serif'>Site of Refuge</Heading>
