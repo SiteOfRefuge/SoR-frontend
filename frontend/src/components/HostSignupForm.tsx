@@ -31,6 +31,8 @@ import { ContactMethods, DateYY_MM_DD, HostProfile } from '../apiTypes'
 import { format, parse } from 'date-fns'
 import { i18n } from '@lingui/core'
 import { LangContext } from '../context/lang'
+import { APIS, useAuthorizedApi } from '../api';
+import { regionByCountry } from '../regions';
 
 const contactMethod = (method: ContactMethods, value: string) => ({
   id: uuidv4(),
@@ -50,7 +52,7 @@ export default function RefugeeSignupForm({
   const { register, control, handleSubmit, getValues } = useForm<HostForm>({
     defaultValues: {},
   })
-  // const addHost = useAuthorizedApi(APIS.ADD_REFUGEE);
+  const addHost = useAuthorizedApi(APIS.ADD_HOST);
 
   const onSubmit = handleSubmit((data) => {
     const uuid = uuidv4()
@@ -59,13 +61,17 @@ export default function RefugeeSignupForm({
       summary: {
         ...data.summary,
         id: uuid,
+        availability: {
+          ...data.summary.availability,
+          id: uuid,
+        }
       },
       contact: {
         id: uuid,
         firstName: data.firstName,
         lastName: data.lastName,
         methods: [],
-      },
+      }
     }
     if (data.phone) {
       submission.contact.methods.push(contactMethod('Phone', data.phone))
@@ -74,18 +80,20 @@ export default function RefugeeSignupForm({
       submission.contact.methods.push(contactMethod('Email', data.email))
     }
     // TODO: Something different for SMS?
-    console.log('Creating account', submission)
-    // addRefuge(submission);
+    
+    addHost(submission)
   })
 
   const restrictions = useController({
     control,
     name: 'summary.restrictions',
+    defaultValue: [],
   })
 
   const languages = useController({
     control,
     name: 'summary.languages',
+    defaultValue: [],
   })
 
   const dateAvailable = useController({
@@ -115,7 +123,7 @@ export default function RefugeeSignupForm({
           </FormLabel>
           <Input
             id='lastInitial'
-            {...register('lastName', { minLength: 1, maxLength: 1 })}
+            {...register('lastName')}
           />
         </FormControl>
         <FormControl>
@@ -137,6 +145,19 @@ export default function RefugeeSignupForm({
             placeholder='name@example.com'
             {...register('email')}
           />
+        </FormControl>
+        <FormControl>
+          <FormLabel htmlFor='region'><Trans>Region</Trans></FormLabel>
+          <Select id='region' {...register('summary.region')}>
+            {Object.keys(regionByCountry).map(country => {
+              const regions = regionByCountry[country];
+              return (
+                <optgroup label={country} key={country}>
+                  {regions.map(r => <option key={r.code} value={r.code}>{r.code}: {r.name}</option>)}
+                </optgroup>
+              );
+            })}
+          </Select>
         </FormControl>
         <Divider />
         <FormControl>
