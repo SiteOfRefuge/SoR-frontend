@@ -27,7 +27,7 @@ import DatePicker from 'react-datepicker'
 import { HostForm } from '../types'
 import { useContext } from 'react'
 // import { APIS, useAuthorizedApi } from '../api';
-import { ContactMethods, DateDD_MM_YY, HostProfile } from '../apiTypes'
+import { ContactMethods, DateYY_MM_DD, HostProfile } from '../apiTypes'
 import { format, parse } from 'date-fns'
 import { i18n } from '@lingui/core'
 import { LangContext } from '../context/lang'
@@ -39,8 +39,8 @@ const contactMethod = (method: ContactMethods, value: string) => ({
   verified: false,
 })
 
-const formatDate = (date: Date) => format(date, 'dd-MM-yyyy') as DateDD_MM_YY
-const parseDate = (date: string) => parse(date, 'dd-MM-yyyy', new Date())
+const formatDate = (date: Date) => format(date, 'yyyy-MM-dd') as DateYY_MM_DD
+const parseDate = (date: string) => parse(date, 'yyyy-MM-dd', new Date())
 
 export default function RefugeeSignupForm({
   onSignup,
@@ -50,8 +50,6 @@ export default function RefugeeSignupForm({
   const { register, control, handleSubmit, getValues } = useForm<HostForm>({
     defaultValues: {},
   })
-  const [locale] = useContext(LangContext)
-
   // const addHost = useAuthorizedApi(APIS.ADD_REFUGEE);
 
   const onSubmit = handleSubmit((data) => {
