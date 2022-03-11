@@ -240,6 +240,7 @@ export default function RefugeeSignupForm({
             }
             disabled={!getValues('summary.availability.active')}
             showPopperArrow={true}
+            minDate={new Date()}
             dateFormat='dd-MM-yyyy'
           />
         </FormControl>
