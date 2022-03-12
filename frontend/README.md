@@ -1,6 +1,10 @@
 # Getting Started with Site of Refuge
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Prerequisites
+Befor you can start using the site of refuge, you need to add .env file.
+
+`.env.example` will show all the variables you need to set.
 
 ## Available Scripts
 

@@ -4,11 +4,11 @@ import { InteractionStatus, InteractionRequiredAuthError } from '@azure/msal-bro
 import { msalConfig } from './authConfig';
 import { ApiDefinition } from './apiTypes';
 
-const domain = process.env.NODE_ENV === 'production' ?
-  'https://api-staging.siteofrefuge.com' : '';
+const domain = process.env.REACT_APP_API_URL
 
 export const APIS: {[key: string]: ApiDefinition} = {
   ADD_REFUGEE: { url: '/v1/refugees', method: 'POST' },
+  ADD_HOST: { url: '/v1/hosts', method: 'POST' },
   GET_REFUGEES: { url: '/v1/refugees', method: 'GET' }
   // Add further APIs here...
 }

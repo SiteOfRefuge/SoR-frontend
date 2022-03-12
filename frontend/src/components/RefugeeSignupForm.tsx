@@ -72,12 +72,14 @@ export default function RefugeeSignupForm({ onSignup } : { onSignup: () => void}
 
   const restrictions = useController({
     control,
-    name: 'summary.restrictions'
+    name: 'summary.restrictions',
+    defaultValue: []
   });
 
   const languages = useController({
     control,
-    name: 'summary.languages'
+    name: 'summary.languages',
+    defaultValue: []
   });
 
   
