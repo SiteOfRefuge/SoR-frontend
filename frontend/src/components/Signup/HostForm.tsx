@@ -1,9 +1,4 @@
 import {
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
   FormControl,
   FormLabel,
   Input,
@@ -20,21 +15,18 @@ import {
   InputLeftElement,
 } from "@chakra-ui/react"
 import { Trans } from "@lingui/macro"
-import PrimaryButton from "./PrimaryButton"
+import PrimaryButton from "../PrimaryButton"
 import { useForm, useController } from "react-hook-form"
 import { v4 as uuidv4 } from "uuid"
-import DatePicker from "react-datepicker"
-import { HostForm } from "../types"
-import { useContext } from "react"
+import { HostForm } from "../../types"
 // import { APIS, useAuthorizedApi } from '../api';
-import { ContactMethods, DateYY_MM_DD, HostProfile } from "../apiTypes"
-import { format, parse } from "date-fns"
+import { ContactMethods, DateYY_MM_DD, HostProfile } from "../../apiTypes"
+import { format } from "date-fns"
 import { i18n } from "@lingui/core"
-import { LangContext } from "../context/lang"
-import { APIS, useAuthorizedApi } from "../api"
-import { regionByCountry } from "../regions"
-import { NumberInputWithStepper } from "./Form/NumberInputWithStepper"
-import { Calendar } from "./Form/Calendar"
+import { APIS, useAuthorizedApi } from "../../api"
+import { regionByCountry } from "../../regions"
+import { NumberInputWithStepper } from "../NumberInputWithStepper"
+import { Calendar } from "../Calendar"
 
 const contactMethod = (method: ContactMethods, value: string) => ({
   id: uuidv4(),
@@ -44,7 +36,6 @@ const contactMethod = (method: ContactMethods, value: string) => ({
 })
 
 const formatDate = (date: Date) => format(date, "yyyy-MM-dd") as DateYY_MM_DD
-const parseDate = (date: string) => parse(date, "yyyy-MM-dd", new Date())
 
 export default function RefugeeSignupForm({
   onSignup,
@@ -117,18 +108,18 @@ export default function RefugeeSignupForm({
 
   return (
     <form onSubmit={onSubmit}>
-      <VStack spacing="16px">
+      <VStack spacing="16px" p="5">
         <FormControl>
           <FormLabel htmlFor="firstName">
             <Trans>First Name</Trans>
           </FormLabel>
-          <Input id="firstName" {...register("firstName")} />
+          <Input id="firstName" {...register("firstName")} size="lg" />
         </FormControl>
         <FormControl>
           <FormLabel htmlFor="lastInitial">
             <Trans>Last Name</Trans>
           </FormLabel>
-          <Input id="lastInitial" {...register("lastName")} />
+          <Input id="lastInitial" {...register("lastName")} size="lg" />
         </FormControl>
         <FormControl>
           <FormLabel htmlFor="phone">
@@ -136,7 +127,7 @@ export default function RefugeeSignupForm({
           </FormLabel>
           <InputGroup>
             <InputLeftElement children="+" />
-            <Input id="phone" type="tel" {...register("phone")} />
+            <Input id="phone" type="tel" {...register("phone")} size="lg" />
           </InputGroup>
         </FormControl>
         <FormControl>
@@ -147,6 +138,7 @@ export default function RefugeeSignupForm({
             id="email"
             type="email"
             placeholder="name@example.com"
+            size="lg"
             {...register("email")}
           />
         </FormControl>
@@ -154,7 +146,7 @@ export default function RefugeeSignupForm({
           <FormLabel htmlFor="region">
             <Trans>Region</Trans>
           </FormLabel>
-          <Select id="region" {...register("summary.region")}>
+          <Select id="region" {...register("summary.region")} size="lg">
             {Object.keys(regionByCountry).map((country) => {
               const regions = regionByCountry[country]
               return (
@@ -172,7 +164,8 @@ export default function RefugeeSignupForm({
         <Divider />
         <FormControl>
           <FormLabel htmlFor="allowed_people">
-            <Trans>Allowed people</Trans>
+            <Trans>MAX Group size</Trans>
+            <sup>*</sup>
           </FormLabel>
           <NumberInputWithStepper onChange={allowedPeople.field.onChange} />
         </FormControl>
@@ -219,13 +212,14 @@ export default function RefugeeSignupForm({
           <Textarea id="shelter" {...register("summary.shelter")} />
         </FormControl>
         <Divider />
-        <FormControl display='flex' alignItems='center'>
-          <FormLabel htmlFor='avaliable' mb='0'>
+        <FormControl display="flex" alignItems="center">
+          <FormLabel htmlFor="avaliable" mb="0">
             <Trans>Avaliable</Trans>
           </FormLabel>
           <Switch
-            id='avaliable'
+            id="avaliable"
             onChange={(state) => active.field.onChange(state)}
+            size="lg"
           />
         </FormControl>
         <Calendar
@@ -240,6 +234,7 @@ export default function RefugeeSignupForm({
           <Select
             id="region"
             {...register("summary.availability.length_of_stay")}
+            size="lg"
           >
             <option key="Less than 3 days" value="Less than 3 days">
               {i18n._("less_3_days")}
@@ -296,11 +291,9 @@ export default function RefugeeSignupForm({
           <Textarea id="message" {...register("summary.message")} />
         </FormControl>
 
-        <Box pt="24px">
-          <PrimaryButton width="xs" type="submit">
-            <Trans>Sign Up</Trans>
-          </PrimaryButton>
-        </Box>
+        <PrimaryButton isFullWidth={true} type="submit" size="lg">
+          <Trans>Sign Up</Trans>
+        </PrimaryButton>
       </VStack>
     </form>
   )

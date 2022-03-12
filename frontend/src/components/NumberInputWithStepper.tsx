@@ -1,12 +1,10 @@
 import {
   Button,
-  HStack,
   Input,
   InputGroup,
   useNumberInput,
 } from "@chakra-ui/react"
-import { SyntheticEvent, useEffect } from "react"
-import { UseControllerReturn, UseFormRegisterReturn } from "react-hook-form"
+import { useEffect } from "react"
 
 export const NumberInputWithStepper = ({
   onChange,

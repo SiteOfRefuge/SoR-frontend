@@ -6,8 +6,6 @@ import {
   NumberDecrementStepper,
   FormControl,
   FormLabel,
-  // FormErrorMessage,
-  // FormHelperText,
   Input,
   VStack,
   Checkbox, 
@@ -18,14 +16,14 @@ import {
   Textarea
 } from '@chakra-ui/react'
 import { Trans } from '@lingui/macro'
-import PrimaryButton from './PrimaryButton'
+import PrimaryButton from '../PrimaryButton'
 import { useForm, useController } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 
-import { RefugeeForm } from '../types';
-import { APIS, useAuthorizedApi } from '../api';
-import { RefugeeProfile } from '../apiTypes';
-import { regionByCountry } from '../regions';
+import { RefugeeForm } from '../../types';
+import { APIS, useAuthorizedApi } from '../../api';
+import { RefugeeProfile } from '../../apiTypes';
+import { regionByCountry } from '../../regions';
 
 export default function RefugeeSignupForm({ onSignup } : { onSignup: () => void}) {
   const { register, control, handleSubmit } = useForm<RefugeeForm>({

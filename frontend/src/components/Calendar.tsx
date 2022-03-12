@@ -2,7 +2,7 @@ import { IconButton, FormControl, FormLabel, InputGroup } from "@chakra-ui/react
 import { Trans } from "@lingui/macro"
 import DatePicker from "react-datepicker"
 // import { APIS, useAuthorizedApi } from '../api';
-import { DateYY_MM_DD } from "../../apiTypes"
+import { DateYY_MM_DD } from "../apiTypes"
 import { format, parse } from "date-fns"
 import { CalendarIcon } from '@chakra-ui/icons'
 
