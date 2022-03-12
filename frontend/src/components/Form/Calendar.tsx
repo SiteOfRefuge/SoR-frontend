@@ -33,7 +33,7 @@ export const Calendar = ({
           minDate={new Date()}
           dateFormat="dd-MM-yyyy"
         />
-        <IconButton borderLeftRadius='0' icon={<CalendarIcon />} aria-label="avaliability-date" />
+        <IconButton borderLeftRadius='0' icon={<CalendarIcon />} aria-label="avaliability-date" size="lg" />
       </InputGroup>
     </FormControl>
   )

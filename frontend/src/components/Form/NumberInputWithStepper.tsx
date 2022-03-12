@@ -4,11 +4,15 @@ import {
   Input,
   InputGroup,
   useNumberInput,
-} from '@chakra-ui/react'
-import { SyntheticEvent, useEffect } from 'react'
-import { UseControllerReturn, UseFormRegisterReturn } from 'react-hook-form'
+} from "@chakra-ui/react"
+import { SyntheticEvent, useEffect } from "react"
+import { UseControllerReturn, UseFormRegisterReturn } from "react-hook-form"
 
-export const NumberInputWithStepper = ({onChange}: {onChange: (e: unknown) => void}) => {
+export const NumberInputWithStepper = ({
+  onChange,
+}: {
+  onChange: (e: unknown) => void
+}) => {
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({
       step: 1,
@@ -20,25 +24,25 @@ export const NumberInputWithStepper = ({onChange}: {onChange: (e: unknown) => vo
   const inc = getIncrementButtonProps()
   const dec = getDecrementButtonProps()
   const input = getInputProps()
-  const inputElement = (input as unknown as HTMLInputElement)
-  useEffect(() =>{
+  const inputElement = input as unknown as HTMLInputElement
+  useEffect(() => {
     onChange(inputElement.value)
   }, [inputElement.value, onChange])
   return (
     <InputGroup>
-      <Button {...dec} borderRightRadius='0' >
+      <Button {...dec} borderRightRadius="0" size="lg">
         -
       </Button>
       <Input
-        // {...input}
         value={(input as unknown as HTMLInputElement).value}
         onChange={onChange}
-        borderRadius='0'
-        m='0'
-        marginInlineStart='0'
-        textAlign='center'
+        borderRadius="0"
+        m="0"
+        marginInlineStart="0"
+        textAlign="center"
+        size="lg"
       />
-      <Button {...inc} borderLeftRadius='0' >
+      <Button {...inc} borderLeftRadius="0" size="lg">
         +
       </Button>
     </InputGroup>
